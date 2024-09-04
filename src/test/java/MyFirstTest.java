@@ -1,5 +1,8 @@
 import org.junit.jupiter.api.*;
 
+import static org.junit.jupiter.api.Assertions.*;
+
+//@Disabled("All test in the class wiil be skipped")
 public class MyFirstTest {
 
     @BeforeAll
@@ -13,10 +16,12 @@ public class MyFirstTest {
     }
 
     @Test
+    @DisplayName("Custom test name containing spaces")
     void mySimpleTest() {
         System.out.println("TEST 1");
     }
 
+    @Disabled
     @Test
     void mySimpleTest2() {
         System.out.println("TEST 2");
@@ -24,9 +29,26 @@ public class MyFirstTest {
     }
 
     @Test
-    void mySimpleTest3() {
-        System.out.println("TEST 3");
+    @DisplayName("\uD83D\uDC80")
+    void testWithDisplayNameContainingEmoji() {
+        assertEquals(2,2);
+        assertTrue(true,"wiadomość");
+        assertFalse(false,"wiadomość");
     }
+
+    @Test
+    void groupedAssertions(){
+        assertAll("address", () -> assertEquals("John","John"),
+                () -> assertTrue(true,"wiadomość"));
+    }
+
+    @Test
+    void groupedAssertions_tdd(){
+        Address address = new Address("Jan", "Kowalski");
+        assertAll("address", () -> assertEquals("Jan",address.getFirstName()),
+                () -> assertEquals("Kowalski", address.getLastName()));
+    }
+
 
     @AfterEach
     void teardown() {
