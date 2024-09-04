@@ -60,9 +60,10 @@ public class MyFirstTest {
 
     @Test
     void groupedAssertions_tdd() {
-        Address address = new Address("Jan", "Kowalski");
+        Address address = new Address("Jan", "Kowalski",41);
         assertAll("address", () -> assertEquals("Jan", address.getFirstName()),
-                () -> assertEquals("Kowalski", address.getLastName()));
+                () -> assertEquals("Kowalski", address.getLastName()),
+                () -> assertEquals(41, address.getAge()));
     }
 
     @Test
