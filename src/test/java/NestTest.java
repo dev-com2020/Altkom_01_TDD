@@ -1,6 +1,6 @@
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Nested;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class NestTest {
 
@@ -9,9 +9,12 @@ public class NestTest {
         System.out.println("Setup 1");
     }
 
-    @Test
-    void topTest(){
+    @RepeatedTest(value = 2, name = "{displayName} = {currentRepetition}/{totalRepetitions}")
+    @DisplayName("Powtórka!")
+    void topTest(TestInfo testInfo){
+        System.out.println(testInfo.getDisplayName());
         System.out.println("Test 1");
+        assertEquals(2, 2);
     }
 
     @Nested
@@ -23,6 +26,7 @@ public class NestTest {
         @Test
         void innerTest1() {
             System.out.println("Test 2");
+            assertEquals(2, 2);
         }
         @Nested
         class InnerClass2 {
