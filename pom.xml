@@ -58,6 +58,17 @@
             <artifactId>junit-jupiter-params</artifactId>
             <version>5.11.0</version>
         </dependency>
+        <dependency>
+            <groupId>org.spockframework</groupId>
+            <artifactId>spock-core</artifactId>
+            <version>2.4-M3-groovy-3.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.codehaus.groovy</groupId>
+            <artifactId>groovy</artifactId>
+            <version>3.0.9</version> <!-- Upewnij się, że wersja Groovy pasuje do Spocka -->
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
     <build>
