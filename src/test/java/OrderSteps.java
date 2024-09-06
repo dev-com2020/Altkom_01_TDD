@@ -9,10 +9,6 @@ public class OrderSteps {
     private Order2 order;
     private OrderService2 orderService = new OrderService2();
 
-//    @Given("a customer with {string} membership")
-//    public void aCustomerWithMembership(String membership){
-//        order = new Order2(100.0, membership);
-//    }
 
     @Given("a customer with {string} membership")
     public void aCustomerWithMembershipMembership(String membership) {
