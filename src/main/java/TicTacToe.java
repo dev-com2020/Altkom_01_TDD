@@ -11,8 +11,9 @@ public class TicTacToe {
     public static void play(int x, int y) {
         checkAxis(x);
         checkAxis(y);
-        setBox(x,y);
         lastPlayer = nextPlayer();
+        setBox(x,y);
+
     }
 
     private static void checkAxis(int axis) {
