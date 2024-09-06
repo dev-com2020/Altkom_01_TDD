@@ -15,7 +15,7 @@ public class TicTacToeTest {
     @Test
     public void whenXOutsideBoardThenRuntimeException() {
         RuntimeException exception = assertThrows(RuntimeException.class, () -> {
-            TicTacToe.play(5, 2);
+            ticTacToe.play(5, 2);
         });
         assertEquals("axis is outside board", exception.getMessage());
     }
@@ -23,7 +23,7 @@ public class TicTacToeTest {
     @Test
     public void whenYOutsideBoardThenRuntimeException() {
         RuntimeException exception = assertThrows(RuntimeException.class, () -> {
-            TicTacToe.play(2, 5);
+            ticTacToe.play(2, 5);
         });
         assertEquals("axis is outside board", exception.getMessage());
     }
@@ -32,7 +32,7 @@ public class TicTacToeTest {
     public void whenOccupiedThenRuntimeException() {
         ticTacToe.play(2, 1);
         RuntimeException exception = assertThrows(RuntimeException.class, () -> {
-            TicTacToe.play(2, 1);
+            ticTacToe.play(2, 1);
         });
         assertEquals("Box is occupied", exception.getMessage());
     }
