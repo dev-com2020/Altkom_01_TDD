@@ -1,0 +1,115 @@
+public class OrderService {
+    public void process(Order o, int t) {
+        if (t == 1) {
+            double discount = o.getTotal() * 0.1;
+            o.setTotal(o.getTotal() - discount);
+        } else if (t == 2) {
+            double discount = o.getTotal() * 0.2;
+            o.setTotal(o.getTotal() - discount);
+        } else if (t == 3) {
+            double discount = o.getTotal() * 0.3;
+            o.setTotal(o.getTotal() - discount);
+        }
+        o.setStatus("Processed");
+    }
+}
+------------------------------------------------------
+public class OrderService {
+
+    public void process(Order order, DiscountType discountType) {
+        applyDiscount(order, discountType);
+        order.setStatus("Processed");
+    }
+
+    private void applyDiscount(Order order, DiscountType discountType) {
+        double discount = order.getTotal() * discountType.getRate();
+        order.setTotal(order.getTotal() - discount);
+    }
+}
+------------------------------------------------------------------
+public enum DiscountType {
+    NONE(0.0),
+    BRONZE(0.1),
+    SILVER(0.2),
+    GOLD(0.3);
+
+    private final double rate;
+
+    DiscountType(double rate) {
+        this.rate = rate;
+    }
+
+    public double getRate() {
+        return rate;
+    }
+}
+----------------------------------------------------------------------
+----------------------------------------------------------------------
+
+public class UserService {
+    public void createUser(String name, String email, String password) {
+        if (email.contains("@") && password.length() > 6) {
+            // Logika tworzenia użytkownika
+        }
+    }
+}
+----------------------------------------------------------------------
+public class UserService {
+    public void createUser(String name, String email, String password) {
+        if (isValidEmail(email) && isValidPassword(password)) {
+            // Logika tworzenia użytkownika
+        }
+    }
+
+    private boolean isValidEmail(String email) {
+        return email.contains("@");
+    }
+
+    private boolean isValidPassword(String password) {
+        return password.length() > 6;
+    }
+}
+----------------------------------------------------------------------
+----------------------------------------------------------------------
+
+public class Calculator {
+    public int m(int a, int b) {
+        return a * b;
+    }
+}
+----------------------------------------------------------------------
+public class Calculator {
+    public int multiply(int firstNumber, int secondNumber) {
+        return firstNumber * secondNumber;
+    }
+}
+----------------------------------------------------------------------
+Code Review - Przykłady Zagadnień
+----------------------------------------------------------------------
+public void createUser(String username, String password) {
+    String sql = "INSERT INTO users (username, password) VALUES ('" + username + "', '" + password + "')";
+    // Wykonanie SQL...
+}
+----------------------------------------------------------------------
+public void createUser(String username, String password) {
+    String sql = "INSERT INTO users (username, password) VALUES (?, ?)";
+    try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+        stmt.setString(1, username);
+        stmt.setString(2, password);
+        stmt.executeUpdate();
+    }
+}
+----------------------------------------------------------------------
+----------------------------------------------------------------------
+@Test
+public void testApplyDiscount() {
+    Order order = new Order(100.0);
+    OrderService orderService = new OrderService();
+
+    orderService.applyDiscount(order, DiscountType.SILVER);
+
+    assertEquals(80.0, order.getTotal(), 0.01);
+}
+
+
+
