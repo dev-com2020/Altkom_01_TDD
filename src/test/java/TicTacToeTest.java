@@ -36,4 +36,15 @@ public class TicTacToeTest {
         });
         assertEquals("Box is occupied", exception.getMessage());
     }
+
+    @Test
+    public void givenFirstTurnWhenNextPlayerThenX(){
+        assertEquals('X',ticTacToe.nextPlayer());
+    }
+
+    @Test
+    public void givenLastTurnWasXWhenNextPlayerThen0(){
+        ticTacToe.play(1,1);
+        assertEquals('0',ticTacToe.nextPlayer());
+    }
 }
