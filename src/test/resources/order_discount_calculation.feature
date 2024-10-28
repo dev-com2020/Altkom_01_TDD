@@ -3,7 +3,7 @@ Feature: Order Discount Calculation
   I want to receive a discount on my order
   Based on the type of the order
 
-  Scenario Outline: Customer with Gold level should receive 30% discount
+  Scenario Outline: Customer with Gold level should receive discount
     Given a customer with "<membership>" membership
     When the customer places an order worth <order>
     Then the total price should be <total>
